@@ -1,0 +1,22 @@
+server:
+   port: 8080
+   tomcat:
+      uri-encoding: utf-8
+spring:
+   datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://cdb-mzvws756.cd.tencentcdb.com:10143/StudentManager?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8
+      username: 'student_manager'
+      password: 'zxc123!@#'
+      max-idle: 10
+      max-wait: 10000
+      min-idle: 5
+      initial-size: 5
+thymeleaf:
+   prefix: classpath:templates/
+   suffix: .html
+   cache: false
+mybats:
+   config-location: classpath:mybatis/mybatis-config.xml
+   mapper-locations: classpath:mybatis/mapper/*.xml
+   type-aliases-package: com.kycb.demo.Pojo

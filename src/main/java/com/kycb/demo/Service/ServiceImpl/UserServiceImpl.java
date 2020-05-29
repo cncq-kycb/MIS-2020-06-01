@@ -1,6 +1,8 @@
 package com.kycb.demo.Service.ServiceImpl;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import com.kycb.demo.Dao.AuditlogMapper;
 import com.kycb.demo.Dao.AuthorityMapper;
+import com.kycb.demo.Dao.EvaluationMapper;
 import com.kycb.demo.Dao.OrganizationsMapper;
 import com.kycb.demo.Dao.UserAuthorityMapper;
 import com.kycb.demo.Dao.UserinfoMapper;
+import com.kycb.demo.Pojo.Auditlog;
+import com.kycb.demo.Pojo.Evaluation;
+import com.kycb.demo.Pojo.EvaluationExample;
 import com.kycb.demo.Pojo.MyJson;
 import com.kycb.demo.Pojo.OrganizationsExample;
 import com.kycb.demo.Pojo.UserAuthority;
@@ -34,6 +41,10 @@ public class UserServiceImpl implements UserService {
 	private AuthorityMapper authorityMapper;
 	@Autowired
 	private OrganizationsMapper organizationsMapper;
+	@Autowired
+	private EvaluationMapper evaluationMapper;
+	@Autowired
+	private AuditlogMapper auditlogMapper;
 
 	@Override
 	public Userinfo getUser(String username) {
@@ -132,6 +143,51 @@ public class UserServiceImpl implements UserService {
 			System.err.println(e);
 			return new MyJson(500, "数据库出错");
 		}
+	}
+
+	@Override
+	public MyJson search(String input, String userId, String userIdentity) {
+		EvaluationExample evaluationExample = new EvaluationExample();
+		switch (userIdentity) {
+		case "student":
+			evaluationExample.or().andStuIdEqualTo(userId).andEvaNameEqualTo(input);
+			break;
+		case "teacher":
+			evaluationExample.or().andTeacherIdEqualTo(userId).andEvaNameEqualTo(input);
+			break;
+		default:
+			return new MyJson(500, "用户类型出错");
+		}
+		try {
+			HashMap<String, Object> data = new HashMap<String, Object>();
+			List<Evaluation> evaluations = evaluationMapper.selectByExampleWithBLOBs(evaluationExample);
+			Userinfo userinfo = userInfoMapper.selectByPrimaryKey(userId);
+			data.put("evaluations", evaluations);
+			data.put("organization", userinfo.getUserOrganization());
+			return new MyJson(data, "");
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(500, "数据库出错");
+		}
+	}
+
+	@Override
+	public MyJson audit(Auditlog auditlog, String userId) {
+		// auditlogMapper
+		try {
+			Userinfo userinfo = userInfoMapper.selectByPrimaryKey(userId);
+			auditlog.setAuditUserid(userinfo.getUserId());
+			auditlog.setAuditUser(userinfo.getUserName());
+			auditlog.setAuditResult(0);
+			auditlog.setAuditType(2);
+			auditlog.setApplyDate(new Date());
+			auditlogMapper.insertSelective(auditlog);
+			return new MyJson(100, "申请成功");
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(500, "数据库出错");
+		}
+
 	}
 
 }

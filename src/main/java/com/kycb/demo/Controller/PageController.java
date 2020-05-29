@@ -31,6 +31,7 @@ public class PageController {
 	public String registerPage() {
 		return "register";
 	}
+	
 
 	// 用户首页
 	@RequestMapping("/user/index.html")
@@ -40,6 +41,12 @@ public class PageController {
 		session.setAttribute("userinfo", userinfo);
 		return "/user/index";
 	}
+	
+	@RequestMapping("/user/assetcheck.html")
+	public String UserAssetcheckPage() {
+		return "/user/assetcheck";
+	}
+
 
 	// 管理员首页
 	@RequestMapping("/admin/index.html")

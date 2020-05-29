@@ -148,15 +148,19 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public MyJson search(String input, String userId, String userIdentity) {
 		EvaluationExample evaluationExample = new EvaluationExample();
-		switch (userIdentity) {
-		case "student":
-			evaluationExample.or().andStuIdEqualTo(userId).andEvaNameEqualTo(input);
-			break;
-		case "teacher":
-			evaluationExample.or().andTeacherIdEqualTo(userId).andEvaNameEqualTo(input);
-			break;
-		default:
-			return new MyJson(500, "用户类型出错");
+		if (input == null) {
+			evaluationExample.or().andStuIdEqualTo(userId);
+		} else {
+			switch (userIdentity) {
+			case "student":
+				evaluationExample.or().andStuIdEqualTo(userId).andEvaNameEqualTo(input);
+				break;
+			case "teacher":
+				evaluationExample.or().andTeacherIdEqualTo(userId).andEvaNameEqualTo(input);
+				break;
+			default:
+				return new MyJson(500, "用户类型出错");
+			}
 		}
 		try {
 			HashMap<String, Object> data = new HashMap<String, Object>();

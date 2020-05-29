@@ -34,9 +34,17 @@ public class UserController {
 		return userService.register(userinfo);
 	}
 
+	// 获取用户信息
+	@GetMapping(value = "/getUserinfo")
+	@ResponseBody
+	public MyJson getUserinfo(HttpSession session) {
+		Userinfo userinfo = (Userinfo) session.getAttribute("userinfo");
+		return new MyJson(userinfo, "");
+	}
+
 	// 搜索记录
 	@PreAuthorize("hasAuthority('ROLE_USER')")
-	@GetMapping("/search")
+	@GetMapping("/user/search")
 	@ResponseBody
 	public MyJson search(String input, HttpSession session) {
 		Userinfo userinfo = (Userinfo) session.getAttribute("userinfo");

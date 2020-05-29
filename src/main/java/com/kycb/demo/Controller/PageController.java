@@ -43,7 +43,10 @@ public class PageController {
 
 	// 管理员首页
 	@RequestMapping("/admin/index.html")
-	public String adminIndexPage() {
+	public String adminIndexPage(HttpSession session) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Userinfo userinfo = userService.getUser(userDetails.getUsername());
+		session.setAttribute("userinfo", userinfo);
 		return "/admin/index";
 	}
 }

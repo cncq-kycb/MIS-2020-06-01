@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import com.kycb.demo.Pojo.MyJson;
 import com.kycb.demo.Pojo.Userinfo;
 
 @Service
@@ -16,5 +17,11 @@ public interface UserService extends UserDetailsService {
 
 	// 获取用户权限
 	List<SimpleGrantedAuthority> getAuthorities(String userId);
+
+	// 获取可选学校
+	MyJson getAllOrganizations();
+
+	// 注册用户
+	MyJson register(Userinfo userinfo);
 
 }

@@ -43,7 +43,7 @@ public class Config extends WebSecurityConfigurerAdapter {
 				.antMatchers("/assets/**", "/logo/**").permitAll() // 引用静态资源
 				.antMatchers("/user/**").hasAnyAuthority("ROLE_USER") // 需要具有ROLE_USER角色才能访问
 				.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN") // 需要具有ROLE_ADMIN角色才能访问
-				.anyRequest().authenticated() // 设置权限验证
+				.anyRequest().permitAll() // 设置权限验证
 				.and().formLogin().loginPage("/login.html").permitAll() // 设置登录页面
 				.loginProcessingUrl("/authentication/login").successHandler(new LoginSuccessHandler()) // 自定义登录路径
 				.and().logout().permitAll() // 设置登出页面

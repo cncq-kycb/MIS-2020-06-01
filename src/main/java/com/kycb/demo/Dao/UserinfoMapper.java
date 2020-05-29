@@ -30,4 +30,6 @@ public interface UserinfoMapper {
 	int updateByPrimaryKeySelective(Userinfo record);
 
 	int updateByPrimaryKey(Userinfo record);
+
+	String getUUID();
 }

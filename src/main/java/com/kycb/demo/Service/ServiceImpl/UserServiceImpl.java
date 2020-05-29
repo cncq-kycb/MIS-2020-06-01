@@ -12,8 +12,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.kycb.demo.Dao.AuthorityMapper;
+import com.kycb.demo.Dao.OrganizationsMapper;
 import com.kycb.demo.Dao.UserAuthorityMapper;
 import com.kycb.demo.Dao.UserinfoMapper;
+import com.kycb.demo.Pojo.MyJson;
+import com.kycb.demo.Pojo.OrganizationsExample;
 import com.kycb.demo.Pojo.UserAuthority;
 import com.kycb.demo.Pojo.UserAuthorityExample;
 import com.kycb.demo.Pojo.Userinfo;
@@ -29,6 +32,8 @@ public class UserServiceImpl implements UserService {
 	private UserAuthorityMapper userAuthorityMapper;
 	@Autowired
 	private AuthorityMapper authorityMapper;
+	@Autowired
+	private OrganizationsMapper organizationsMapper;
 
 	@Override
 	public Userinfo getUser(String username) {
@@ -80,6 +85,53 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 
+	}
+
+	@Override
+	public MyJson getAllOrganizations() {
+		OrganizationsExample organizationsExample = new OrganizationsExample();
+		organizationsExample.or();
+		try {
+			return new MyJson(organizationsMapper.selectByExample(organizationsExample), "");
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(500, "数据库出错");
+		}
+	}
+
+	@Override
+	public MyJson register(Userinfo userinfo) {
+		// 生成uuid
+		String uuid = userInfoMapper.getUUID();
+		userinfo.setUserId(uuid);
+		UserAuthority userAuthority = new UserAuthority();
+		userAuthority.setUserId(uuid);
+		// 修改用户信息与权限信息
+		switch (userinfo.getUserIdentity()) {
+		case "学生":
+			userinfo.setUserIdentity("student");
+			userAuthority.setAuthorityId(2);
+			break;
+		case "教师":
+			userinfo.setUserIdentity("teacher");
+			userAuthority.setAuthorityId(2);
+			break;
+		case "管理员":
+			userinfo.setUserIdentity("admin");
+			userinfo.setUserOrganization("系统管理员");
+			userAuthority.setAuthorityId(1);
+			break;
+		default:
+			return new MyJson(500, "选项出错");
+		}
+		try {
+			userInfoMapper.insert(userinfo);
+			userAuthorityMapper.insert(userAuthority);
+			return new MyJson(100, "注册成功");
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(500, "数据库出错");
+		}
 	}
 
 }

@@ -16,8 +16,15 @@ public class PageController {
 		return "register";
 	}
 
-	@RequestMapping(value = "/user/index.html")
-	public String userIndex() {
-		return "user/index";
+	// 用户首页
+	@RequestMapping("/user/index.html")
+	public String userIndexPage() {
+		return "/user/index";
+	}
+
+	// 管理员首页
+	@RequestMapping("/admin/index.html")
+	public String adminIndexPage() {
+		return "/admin/index";
 	}
 }

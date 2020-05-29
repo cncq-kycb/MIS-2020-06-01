@@ -58,7 +58,6 @@ public class UserServiceImpl implements UserService {
 				result.add(new SimpleGrantedAuthority(
 						authorityMapper.selectByPrimaryKey(userAuthority.getAuthorityId()).getAuthorityName()));
 			}
-
 			return result;
 		} catch (Exception e) {
 			System.out.println(e);

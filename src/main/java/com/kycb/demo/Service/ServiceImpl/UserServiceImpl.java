@@ -5,13 +5,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessResourceFailureException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.kycb.demo.Dao.AuthorityMapper;
 import com.kycb.demo.Dao.UserAuthorityMapper;
 import com.kycb.demo.Dao.UserinfoMapper;
-import com.kycb.demo.Pojo.Authority;
 import com.kycb.demo.Pojo.UserAuthority;
 import com.kycb.demo.Pojo.UserAuthorityExample;
 import com.kycb.demo.Pojo.Userinfo;
@@ -46,20 +48,39 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<Authority> getAuthorities(String userId) {
+	public List<SimpleGrantedAuthority> getAuthorities(String userId) {
+		List<SimpleGrantedAuthority> result = new ArrayList<SimpleGrantedAuthority>();
 		UserAuthorityExample userAuthorityExample = new UserAuthorityExample();
 		userAuthorityExample.or().andUserIdEqualTo(userId);
 		try {
 			List<UserAuthority> userAuthoritys = userAuthorityMapper.selectByExample(userAuthorityExample);
-			List<Authority> authorities = new ArrayList<Authority>();
 			for (UserAuthority userAuthority : userAuthoritys) {
-				authorities.add(authorityMapper.selectByPrimaryKey(userAuthority.getAuthorityId()));
+				result.add(new SimpleGrantedAuthority(
+						authorityMapper.selectByPrimaryKey(userAuthority.getAuthorityId()).getAuthorityName()));
 			}
-			return authorities;
+
+			return result;
 		} catch (Exception e) {
 			System.out.println(e);
 			throw new DataAccessResourceFailureException("Data base err");
 		}
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		try {
+			Userinfo userinfo = getUser(username);
+			if (userinfo == null) {
+				throw new UsernameNotFoundException("用户不存在！");
+			}
+			UserDetails userDetails = new User(userinfo.getUserName(), "{noop}" + userinfo.getUserPwd(),
+					getAuthorities(userinfo.getUserId()));
+			return userDetails;
+		} catch (Exception e) {
+			System.err.println(e);
+			return null;
+		}
+
 	}
 
 }

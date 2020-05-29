@@ -18,6 +18,6 @@ public class PageController {
 
 	@RequestMapping(value = "/user/index.html")
 	public String userIndex() {
-		return "/user/index";
+		return "user/index";
 	}
 }

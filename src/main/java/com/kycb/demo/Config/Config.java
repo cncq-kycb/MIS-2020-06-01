@@ -11,11 +11,11 @@ public class Config extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/").permitAll() // 不需要登录就可以访问
+		http.csrf().disable().authorizeRequests().antMatchers("/login.html", "/register.html").permitAll() // 不需要登录就可以访问
 				.antMatchers("/user/**").hasAnyRole("ROLE_USER") // 需要具有ROLE_USER角色才能访问
 				.antMatchers("/admin/**").hasAnyRole("ROLE_ADMIN") // 需要具有ROLE_ADMIN角色才能访问
-				.anyRequest().authenticated().and().formLogin().loginPage("/login") // 设置登录页面
-				.loginProcessingUrl("/login").defaultSuccessUrl("/user/index") // 设置默认登录成功后跳转的页面
+				.anyRequest().authenticated().and().formLogin().loginPage("/login.html").permitAll()// 设置登录页面
+				.and().logout().permitAll() // 设置登出页面
 		;
 	}
 

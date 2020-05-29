@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
 
 <head>
 <meta charset="utf-8">
@@ -25,12 +25,12 @@
 	href="http://placehold.it/57.png/000/fff">
 
 <!-- Styles -->
-<link href="assets/fontAwesome/css/fontawesome-all.min.css"
+<link th:href="@{/assets/fontAwesome/css/fontawesome-all.min.css}"
 	rel="stylesheet">
-<link href="assets/css/lib/themify-icons.css" rel="stylesheet">
-<link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
-<link href="assets/css/lib/nixon.css" rel="stylesheet">
-<link href="assets/css/style.css" rel="stylesheet">
+<link th:href="@{/assets/css/lib/themify-icons.css}" rel="stylesheet">
+<link th:href="@{/assets/css/lib/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/assets/css/lib/nixon.css}" rel="stylesheet">
+<link th:href="@{/assets/css/style.css}" rel="stylesheet">
 </head>
 
 <body class="bg-primary">
@@ -63,7 +63,7 @@
 								<button type="submit"
 									class="btn btn-primary btn-flat m-b-30 m-t-30">
 									<a class=" btn-primary btn-flat"
-										href="templates/user/index.html">登录</a>
+										href="/user/index.html">登录</a>
 								</button>
 								<div class="social-login-content">
 									<div class="social-button">

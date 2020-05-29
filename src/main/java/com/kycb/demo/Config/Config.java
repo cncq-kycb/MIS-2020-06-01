@@ -39,7 +39,7 @@ public class Config extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/register.html").permitAll() // 不需要登录就可以访问
+		http.authorizeRequests().antMatchers("/register.html", "/login.html?error").permitAll() // 不需要登录就可以访问
 				.antMatchers("/assets/**", "/logo/**").permitAll() // 引用静态资源
 				.antMatchers("/user/**").hasAnyAuthority("ROLE_USER") // 需要具有ROLE_USER角色才能访问
 				.antMatchers("/admin/**").hasAnyAuthority("ROLE_ADMIN") // 需要具有ROLE_ADMIN角色才能访问

@@ -18,14 +18,14 @@
     <!-- Standard iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
     <!-- Styles -->
-    <link href="../../static/assets/fontAwesome/css/fontawesome-all.min.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/themify-icons.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/mmc-chat.css" rel="stylesheet" />
-    <link href="../../static/assets/css/lib/sidebar.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/bootstrap.min.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/nixon.css" rel="stylesheet">
-    <link href="../../static/assets/lib/lobipanel/css/lobipanel.min.css" rel="stylesheet">
-    <link href="../../static/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/fontAwesome/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="/assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="/assets/css/lib/mmc-chat.css" rel="stylesheet" />
+    <link href="/assets/css/lib/sidebar.css" rel="stylesheet">
+    <link href="/assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/lib/nixon.css" rel="stylesheet">
+    <link href="/assets/lib/lobipanel/css/lobipanel.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -54,8 +54,8 @@
                 </li>
                 <li><a class="sidebar-sub-toggle"><i class="ti-layout"></i> 信息查询 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li><a href="assetcheck.html">评价查询</a></li>
-                        <li><a href="assetcheckbyname.html">操作人查询</a></li>
+                        <li><a href="/user/assetcheck.html">评价查询</a></li>
+                        <li><a href="/user/assetcheckbyname.html">操作人查询</a></li>
 
 
                     </ul>
@@ -87,7 +87,7 @@
     <div class="pull-left">
         <div class="logo">
             <a href="index.html">
-                <img id="logoImg" src="../../static/logo/logo.png" data-logo_big="../../static/logo/logo.png" data-logo_small="../../static/logo/logoSmall.png" alt="" />
+                <img id="logoImg" src="/logo/logo.png" data-logo_big="/logo/logo.png" data-logo_small="/logo/logoSmall.png" alt="" />
             </a>
         </div>
         <div class="hamburger sidebar-toggle">
@@ -156,7 +156,7 @@
                         <li class="user-tooltip" data-id="1" data-status="online" data-username="Rufat Askerov" data-position="left" data-filter-item data-filter-name="rufat askerov">
                             <!-- BEGIN USER IMAGE-->
                             <div class="user-image">
-                                <img src="../../static/assets/images/avatar/1.jpg" class="avatar" alt="Rufat Askerov" />
+                                <img src="/assets/images/avatar/1.jpg" class="avatar" alt="Rufat Askerov" />
                             </div>
                             <!-- END USER IMAGE-->
                             <!-- BEGIN USERNAME-->
@@ -237,8 +237,8 @@
                     <div class="page-header">
                         <div class="page-title">
                             <ol class="breadcrumb text-right">
-                                <li><a href="#">student</a></li>
-                                <li class="active">Student</li>
+                                <li><a href="#" id="userName"></a></li>
+                                <li class="active" id="userType"></li>
                             </ol>
                         </div>
                     </div>
@@ -271,14 +271,14 @@
                                 <div class="form-group">
                                     <p class="text-muted m-b-15 f-s-12"></p>
                                     <div class="input-group input-group-rounded" style="width: 40%">
-                                        <input type="text" placeholder="" name="Search" class="form-control">
-                                        <span class="input-group-btn"><button class="btn btn-primary btn-group-right" type="submit" onclick="window.location.href = '/assetchecktestname.html'"><i class="ti-search"></i></button></span>
+                                        <input type="text" placeholder="" name="Search" class="form-control" id="inputText">
+                                        <span class="input-group-btn"><button class="btn btn-primary btn-group-right" type="button" onclick="sender()"><i class="ti-search"></i></button></span>
                                     </div>
                                 </div>
                                 <table class="table table-responsive">
                                     <thead>
                                     <tr>
-                                        <th><></th>
+                                        <th>< ></th>
                                         <th>评价</th>
                                         <th>评价名</th>
                                         <th>评价人</th>
@@ -287,35 +287,9 @@
                                         <th></th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>testcontent</td>
-                                        <td><span class="badge badge-success">testname</span></td>
-                                        <td>teacher</td>
-                                        <td>student</td>
-                                        <td>school</td>
-                                        <td><button type="button" class="btn btn-info m-b-10 m-l-5" id="toastr-info-top-right" >异议申请</button></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td></td>
-                                        <td><span class="badge badge-success"></span></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><button type="button" class="btn btn-info m-b-10 m-l-5" id="toastr-info-top-right">异议申请</button></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td></td>
-                                        <td><span class="badge badge-success"></span></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td><button type="button" class="btn btn-info m-b-10 m-l-5" id="toastr-info-top-right">异议申请</button></td>
-                                        <!--<span class="badge badge-primary">异议申请</span>-->
-                                    </tr>
+                                    <tbody id="list">
+
+
                                    
 
                                     </tbody>
@@ -332,28 +306,28 @@
     <!-- /# main -->
 </div>
 <!-- /# content wrap -->
-<script src="../../static/assets/js/lib/jquery.min.js"></script>
+<script src="/assets/js/lib/jquery.min.js"></script>
 <!-- jquery vendor -->
-<script src="../../static/assets/js/lib/jquery.nanoscroller.min.js"></script>
+<script src="/assets/js/lib/jquery.nanoscroller.min.js"></script>
 <!-- nano scroller -->
-<script src="../../static/assets/js/lib/sidebar.js"></script>
+<script src="/assets/js/lib/sidebar.js"></script>
 <!-- sidebar -->
-<script src="../../static/assets/js/lib/bootstrap.min.js"></script>
+<script src="/assets/js/lib/bootstrap.min.js"></script>
 <!-- bootstrap -->
-<script src="../../static/assets/js/lib/mmc-common.js"></script>
-<script src="../../static/assets/js/lib/mmc-chat.js"></script>
+<script src="/assets/js/lib/mmc-common.js"></script>
+<script src="/assets/js/lib/mmc-chat.js"></script>
 <!--  Chart js -->
-<script src="../../static/assets/js/lib/chart-js/Chart.bundle.js"></script>
-<script src="../../static/assets/js/lib/chart-js/chartjs-init.js"></script>
+<script src="/assets/js/lib/chart-js/Chart.bundle.js"></script>
+<script src="/assets/js/lib/chart-js/chartjs-init.js"></script>
 <!-- // Chart js -->
 <!--  Datamap -->
-<script src="../../static/assets/js/lib/datamap/d3.min.js"></script>
-<script src="../../static/assets/js/lib/datamap/topojson.js"></script>
-<script src="../../static/assets/js/lib/datamap/datamaps.world.min.js"></script>
-<script src="../../static/assets/js/lib/datamap/datamap-init.js"></script>
-<script src="../../static/assets/lib/lobipanel/js/lobipanel.js"></script>
+<script src="/assets/js/lib/datamap/d3.min.js"></script>
+<script src="/assets/js/lib/datamap/topojson.js"></script>
+<script src="/assets/js/lib/datamap/datamaps.world.min.js"></script>
+<script src="/assets/js/lib/datamap/datamap-init.js"></script>
+<script src="/assets/lib/lobipanel/js/lobipanel.js"></script>
 <!-- // Datamap -->
-<script src="../../static/assets/js/scripts.js"></script>
+<script src="/assets/js/scripts.js"></script>
 <!-- scripit init-->
 <script>
     $(document).ready(function() {
@@ -363,6 +337,50 @@
             editTitle: false
         });
     });
+    $.get(
+    		"getUserinfo",
+    		function(data){
+    			$("#userName").html(data.data.userName);
+    			$("#userType").html(data.data.userIdentity);
+    		}
+    		);
+    var url="search";
+    $.get(
+    		url,
+    		function(data){
+    			var str='';
+    			var count = 0;
+    			
+    			for(i in data.data.evaluations){
+    				var item = data.data.evaluations[i];
+    				
+    				count++;
+    				str+='<tr><th scope="row">'+count+'</th><td>'+item.evaluation+'</td><td><span class="badge badge-success">'
+                                        +item.evaName+'</span></td><td>'+item.teacherName+'</td><td>'
+                                        +item.stuName+'</td> <td>'+data.data.organization+'</td><td><a href="assetapplytestname.html?evaId='+item.evaId+'"><button type="button" class="btn btn-info m-b-10 m-l-5" id="toastr-info-top-right" >异议申请</button></a></td></tr>';
+    			}
+    			$('#list').html(str);
+    			
+    		});
+    function sender(){
+    	var input = $('#inputText').val();
+    	var url="search?input="+input;
+        $.get(
+        		url,
+        		function(data){
+        			var str2='';
+        			var count = 0;
+        			for(i in data.data.evaluations){
+        				var item = data.data.evaluations[i];
+        				count++;
+        				str2+='<tr><th scope="row">'+count+'</th><td>'+item.evaluation+'</td><td><span class="badge badge-success">'
+                                            +item.evaName+'</span></td><td>'+item.teacherName+'</td><td>'
+                                            +item.stuName+'</td> <td>'+data.data.organization+'</td><td><a href="assetapplytestname.html?evaId='+item.evaId+'"><button type="button" class="btn btn-info m-b-10 m-l-5" id="toastr-info-top-right" >异议申请</button></a></td></tr>';
+        			}
+        			$('#list').html(str2);
+        			
+        		});
+    }
 </script>
 </body>
 

@@ -21,7 +21,7 @@ public class AdminController {
 
 	// 获取待处理异议申请
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-	@GetMapping(value = "/getAuditLogs")
+	@GetMapping(value = "/admin/getAuditLogs")
 	@ResponseBody
 	public MyJson getAuditLogs() {
 		return adminService.getAuditLogs();
@@ -29,7 +29,7 @@ public class AdminController {
 
 	// 获取全部异议申请
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-	@GetMapping(value = "/getAllAuditLogs")
+	@GetMapping(value = "/admin/getAllAuditLogs")
 	@ResponseBody
 	public MyJson getAllAuditLogs() {
 		return adminService.getAllAuditLogs();
@@ -37,11 +37,19 @@ public class AdminController {
 
 	// 审核异议申请
 	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
-	@PostMapping(value = "/verify")
+	@PostMapping(value = "/admin/verify")
 	@ResponseBody
 	public MyJson verify(String input, String auditId, HttpSession session) {
 		Userinfo userinfo = (Userinfo) session.getAttribute("userinfo");
 		return adminService.verify(input, auditId, userinfo);
+	}
+	
+	// 获取用户信息
+	@GetMapping(value = "/admin/getUserinfo")
+	@ResponseBody
+	public MyJson getUserinfo(HttpSession session) {
+		Userinfo userinfo = (Userinfo) session.getAttribute("userinfo");
+		return new MyJson(userinfo, "");
 	}
 
 }

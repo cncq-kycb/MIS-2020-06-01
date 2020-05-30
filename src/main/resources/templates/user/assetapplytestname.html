@@ -13,19 +13,19 @@
     <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
     <!-- Retina iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
-    <!-- Standard iPad Touch Icon-->
+    <!-- Standard iPad Touch Icfon-->
     <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
     <!-- Standard iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
     <!-- Styles -->
-    <link href="../../static/assets/fontAwesome/css/fontawesome-all.min.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/themify-icons.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/mmc-chat.css" rel="stylesheet" />
-    <link href="../../static/assets/css/lib/sidebar.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/bootstrap.min.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/nixon.css" rel="stylesheet">
-    <link href="../../static/assets/lib/lobipanel/css/lobipanel.min.css" rel="stylesheet">
-    <link href="../../static/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/fontAwesome/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="/assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="/assets/css/lib/mmc-chat.css" rel="stylesheet" />
+    <link href="/assets/css/lib/sidebar.css" rel="stylesheet">
+    <link href="/assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/lib/nixon.css" rel="stylesheet">
+    <link href="/assets/lib/lobipanel/css/lobipanel.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -88,7 +88,7 @@
     <div class="pull-left">
         <div class="logo">
             <a href="index.html">
-                <img id="logoImg" src="../../static/logo/logo.png" data-logo_big="../../static/logo/logo.png" data-logo_small="../../static/logo/logoSmall.png" alt="" />
+                <img id="logoImg" src="/logo/logo.png" data-logo_big="/logo/logo.png" data-logo_small="/logo/logoSmall.png" alt="" />
             </a>
         </div>
         <div class="hamburger sidebar-toggle">
@@ -238,8 +238,8 @@
                     <div class="page-header">
                         <div class="page-title">
                             <ol class="breadcrumb text-right">
-                                <li><a href="#">student</a></li>
-                                <li class="active">Student</li>
+                                <li><a href="#" id="userName"></a></li>
+                                <li class="active" id="userType"></li>
                             </ol>
                         </div>
                     </div>
@@ -271,7 +271,7 @@
                             <table class="table table-responsive">
                                 <thead>
                                 <tr>
-                                    <th><></th>
+                                    <th>< ></th>
                                     <th>评价</th>
                                     <th>评价名</th>
                                     <th>评价人</th>
@@ -280,28 +280,20 @@
 
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>testcontent</td>
-                                    <td><span class="badge badge-success">testname</span></td>
-                                    <td>teacher</td>
-                                    <td>student</td>
-                                    <td>实验中学</td>
+                                <tbody id="infoDetails">
 
-                                </tr>
 
                                 </tbody>
                             </table>
                             <table class="table table-responsive">
 
-                                <thead>
+                                                              <thead>
                                 <label class="col-sm-2 control-label">申请原因</label>
                                 </thead>
                                 <tbody>
                                 <tr>
 
-                                    <textarea class="form-control" rows="3" placeholder=""></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="" id="reason"></textarea>
 
 
                                 </tr>
@@ -331,41 +323,67 @@
     </div>
     <!-- /# main -->
 </div>
-<script>
-    function applyAsset(){    /* 绑定事件 */
-        var r = confirm("申请成功")
-        if (r == true) {
-            window.location.href = '/user/index.html'
-        } else {
 
-        }
-    }
-</script>
 
 <!-- /# content wrap -->
-<script src="../../static/assets/js/lib/jquery.min.js"></script>
+<script src="/assets/js/lib/jquery.min.js"></script>
 <!-- jquery vendor -->
-<script src="../../static/assets/js/lib/jquery.nanoscroller.min.js"></script>
+<script src="/assets/js/lib/jquery.nanoscroller.min.js"></script>
 <!-- nano scroller -->
-<script src="../../static/assets/js/lib/sidebar.js"></script>
+<script src="/assets/js/lib/sidebar.js"></script>
 <!-- sidebar -->
-<script src="../../static/assets/js/lib/bootstrap.min.js"></script>
+<script src="/assets/js/lib/bootstrap.min.js"></script>
 <!-- bootstrap -->
-<script src="../../static/assets/js/lib/mmc-common.js"></script>
-<script src="../../static/assets/js/lib/mmc-chat.js"></script>
+<script src="/assets/js/lib/mmc-common.js"></script>
+<script src="/assets/js/lib/mmc-chat.js"></script>
 <!--  Chart js -->
-<script src="../../static/assets/js/lib/chart-js/Chart.bundle.js"></script>
-<script src="../../static/assets/js/lib/chart-js/chartjs-init.js"></script>
+<script src="/assets/js/lib/chart-js/Chart.bundle.js"></script>
+<script src="/assets/js/lib/chart-js/chartjs-init.js"></script>
 <!-- // Chart js -->
 <!--  Datamap -->
-<script src="../../static/assets/js/lib/datamap/d3.min.js"></script>
-<script src="../../static/assets/js/lib/datamap/topojson.js"></script>
-<script src="../../static/assets/js/lib/datamap/datamaps.world.min.js"></script>
-<script src="../../static/assets/js/lib/datamap/datamap-init.js"></script>
-<script src="../../static/assets/lib/lobipanel/js/lobipanel.js"></script>
+<script src="/assets/js/lib/datamap/d3.min.js"></script>
+<script src="/assets/js/lib/datamap/topojson.js"></script>
+<script src="/assets/js/lib/datamap/datamaps.world.min.js"></script>
+<script src="/assets/js/lib/datamap/datamap-init.js"></script>
+<script src="/assets/lib/lobipanel/js/lobipanel.js"></script>
 <!-- // Datamap -->
-<script src="../../static/assets/js/scripts.js"></script>
+<script src="/assets/js/scripts.js"></script>
 <!-- scripit init-->
+<script>
+$.get(
+		"getUserinfo",
+		function(data){
+			$("#userName").html(data.data.userName);
+			$("#userType").html(data.data.userIdentity);
+		});
+		
+var url="search";
+$.get(
+		url,
+		function(data){
+		    var query = window.location.search.substring(1);
+		    var evaId = '';
+		    var vars = query.split("&");
+		    for (var i=0;i<vars.length;i++) {
+		            var pair = vars[i].split("=");
+		            if(pair[0] == "evaId"){
+		            	evaId = pair[1];
+		         	   }
+		    }
+		    
+			var str='';
+			
+			for(i in data.data.evaluations){
+				var item = data.data.evaluations[i];
+				if(item.evaId==evaId){
+		        var str='<tr><th scope="row"></th><td >'+item.evaluation+'</td><td><span class="badge badge-success" id="evaName">'
+		        +item.evaName+'</span></td><td id="teacherName">'+item.teacherName+'</td><td id="stuName">'+item.stuName+'</td><td>'+data.data.organization+'</td></tr>';
+				}
+			}
+			
+			$("#infoDetails").html(str);
+		});
+</script>
 <script>
     $(document).ready(function() {
         $('#lobipanel-custom-control').lobiPanel({
@@ -374,6 +392,47 @@
             editTitle: false
         });
     });
+</script>
+<script>
+    function applyAsset(){    /* 绑定事件 */
+        	        var query = window.location.search.substring(1);
+        	        var evaId = '';
+        	        var vars = query.split("&");
+        	        for (var i=0;i<vars.length;i++) {
+        	                var pair = vars[i].split("=");
+        	                if(pair[0] == "evaId"){
+        	                	evaId = pair[1];
+        	             	   }
+        	        }
+        	        var t=$('#reason').val();
+        	       
+                	        var Auditlog ={};
+                	        Auditlog.applyReason=$('#reason').val();
+                	        Auditlog.auditItemid=evaId;
+                	    	Auditlog.auditName=$('#evaName').val();             	    	
+                	    	Auditlog.auditUser=$('#stuName').val();
+                	    	Auditlog.auditTeacher=$('#teacherName').val();
+                	    	
+                	        $.ajax({
+                	            type: "post",
+                	            url:"audit" ,
+                	            async:false,
+                	            dataType: "json",
+                	            data:Auditlog,
+                	            success:function(data) {
+                	            	var r = confirm("申请成功")
+                	                if (r == true) {
+                	                    window.location.href = '/user/index.html'
+                	                } else {
+
+                	                }
+                	            },
+                	            error:function(){alert("err back！！！")}
+                	        });
+        				
+        			
+
+    }
 </script>
 </body>
 

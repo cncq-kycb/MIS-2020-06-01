@@ -60,8 +60,7 @@
 
 
 
-					<li><a href="/authentication/logout"><i class="ti-close"></i>
-							退出登录</a></li>
+					<li><a href="../login.html"><i class="ti-close"></i> 退出登录</a></li>
 				</ul>
 			</div>
 		</div>
@@ -206,8 +205,7 @@
 					</div>
 					<!-- END USERS -->
 				</div>
-			</div>
-			<!-- END SIDEBAR -->
+			</div>			<!-- END SIDEBAR -->
 		</div>
 		<!-- END chat -->
 	</div>
@@ -228,8 +226,8 @@
 						<div class="page-header">
 							<div class="page-title">
 								<ol class="breadcrumb text-right">
-									<li><a href="#">admin</a></li>
-									<li class="active">Admin</li>
+                                <li><a href="#" id="userName"></a></li>
+                                <li class="active" id="userType"></li>
 								</ol>
 							</div>
 						</div>
@@ -407,6 +405,13 @@
 						editTitle : false
 					});
 				});
+		        $.get(
+		        		"getUserinfo",
+		        		function(data){
+		        			$("#userName").html(data.data.userName);
+		        			$("#userType").html(data.data.userIdentity);
+		        		}
+		        		);
 			</script>
 </body>
 

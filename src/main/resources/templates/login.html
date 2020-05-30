@@ -31,6 +31,19 @@
 <link href="/assets/css/lib/bootstrap.min.css" rel="stylesheet">
 <link href="/assets/css/lib/nixon.css" rel="stylesheet">
 <link href="/assets/css/style.css" rel="stylesheet">
+ <script src="/assets/js/lib/jquery.min.js"></script>
+ <script>
+ var query = window.location.search.substring(1);
+ var evaId = '';
+ var vars = query.split("&");
+ for (var i=0;i<vars.length;i++) {
+         var pair = vars[i].split("=");
+         if(pair[0] == "error"){
+        	 var str='登录失败，请重试！';
+        	 alert(str);
+      	   }
+ }
+ </script>
 </head>
 
 <body class="bg-primary">
@@ -44,7 +57,7 @@
 							<a href="index.html"><span></span></a>
 						</div>
 						<div class="login-form">
-							<h4>用户登录</h4>
+							<div id="errorInfo"><h4>用户登录</h4></div>
 							<form action="/authentication/login" method="post">
 								<div class="form-group">
 									<label>用户名</label> <input type="text" class="form-control"

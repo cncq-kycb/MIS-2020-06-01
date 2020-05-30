@@ -18,14 +18,14 @@
     <!-- Standard iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
     <!-- Styles -->
-    <link href="../../static/assets/fontAwesome/css/fontawesome-all.min.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/themify-icons.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/mmc-chat.css" rel="stylesheet" />
-    <link href="../../static/assets/css/lib/sidebar.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/bootstrap.min.css" rel="stylesheet">
-    <link href="../../static/assets/css/lib/nixon.css" rel="stylesheet">
-    <link href="../../static/assets/lib/lobipanel/css/lobipanel.min.css" rel="stylesheet">
-    <link href="../../static/assets/css/style.css" rel="stylesheet">
+    <link href="/assets/fontAwesome/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="/assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="/assets/css/lib/mmc-chat.css" rel="stylesheet" />
+    <link href="/assets/css/lib/sidebar.css" rel="stylesheet">
+    <link href="/assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/lib/nixon.css" rel="stylesheet">
+    <link href="/assets/lib/lobipanel/css/lobipanel.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -44,17 +44,17 @@
 
                 <li>
                 </li>
-                <li><a href="form-basic.html"><i class="ti-view-list-alt"></i> 信息公示 </a></li>
+                <li><a  href="announcementafter.html"><i class="ti-view-list-alt"></i> 信息公示 </a></li>
                 <li>
                     <a class="sidebar-sub-toggle"><i class="ti-files"></i> 审核管理 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
                         <li><a href="useraudit.html">用户审核管理</a></li>
-                        <li><a href="assetaudit.html">异议申请审核管理</a></li>
+                        <li><a href="../admin/assetaudittestnamelist.html">异议申请审核管理</a></li>
 
                     </ul>
                 </li>
 
-                <li><a href="../adminlogin.html"><i class="ti-close"></i> 退出登录</a></li>
+                <li><a href="../login.html"><i class="ti-close"></i> 退出登录</a></li>
             </ul>
         </div>
     </div>
@@ -64,7 +64,7 @@
     <div class="pull-left">
         <div class="logo">
             <a href="index.html">
-                <img id="logoImg" src="../../static/logo/logo.png" data-logo_big="../../static/logo/logo.png" data-logo_small="../../static/logo/logoSmall.png" alt="" />
+                <img id="logoImg" src="/logo/logo.png" data-logo_big="/logo/logo.png" data-logo_small="/logo/logoSmall.png" alt="" />
             </a>
         </div>
         <div class="hamburger sidebar-toggle">
@@ -214,8 +214,8 @@
                     <div class="page-header">
                         <div class="page-title">
                             <ol class="breadcrumb text-right">
-                                <li><a href="#">管理员</a></li>
-                                <li class="active">Admin</li>
+                                <li><a href="#" id="userName"></a></li>
+                                <li class="active" id="userType"></li>
                             </ol>
                         </div>
                     </div>
@@ -247,7 +247,7 @@
                             <table class="table table-responsive">
                                 <thead>
                                 <tr>
-                                    <th><></th>
+                                    <th>< ></th>
                                     <th>评价</th>
                                     <th>评价名</th>
                                     <th>评价人</th>
@@ -257,7 +257,7 @@
                                     <th></th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="list">
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>testcontent</td>
@@ -284,38 +284,63 @@
     <!-- /# main -->
 </div>
 <!-- /# content wrap -->
-<script src="../../static/assets/js/lib/jquery.min.js"></script>
+<script src="/assets/js/lib/jquery.min.js"></script>
 <!-- jquery vendor -->
-<script src="../../static/assets/js/lib/jquery.nanoscroller.min.js"></script>
+<script src="/assets/js/lib/jquery.nanoscroller.min.js"></script>
 <!-- nano scroller -->
-<script src="../../static/assets/js/lib/sidebar.js"></script>
+<script src="/assets/js/lib/sidebar.js"></script>
 <!-- sidebar -->
-<script src="../../static/assets/js/lib/bootstrap.min.js"></script>
+<script src="/assets/js/lib/bootstrap.min.js"></script>
 <!-- bootstrap -->
-<script src="../../static/assets/js/lib/mmc-common.js"></script>
-<script src="../../static/assets/js/lib/mmc-chat.js"></script>
+<script src="/assets/js/lib/mmc-common.js"></script>
+<script src="/assets/js/lib/mmc-chat.js"></script>
 <!--  Chart js -->
-<script src="../../static/assets/js/lib/chart-js/Chart.bundle.js"></script>
-<script src="../../static/assets/js/lib/chart-js/chartjs-init.js"></script>
+<script src="/assets/js/lib/chart-js/Chart.bundle.js"></script>
+<script src="/assets/js/lib/chart-js/chartjs-init.js"></script>
 <!-- // Chart js -->
 <!--  Datamap -->
-<script src="../../static/assets/js/lib/datamap/d3.min.js"></script>
-<script src="../../static/assets/js/lib/datamap/topojson.js"></script>
-<script src="../../static/assets/js/lib/datamap/datamaps.world.min.js"></script>
-<script src="../../static/assets/js/lib/datamap/datamap-init.js"></script>
-<script src="../../static/assets/lib/lobipanel/js/lobipanel.js"></script>
+<script src="/assets/js/lib/datamap/d3.min.js"></script>
+<script src="/assets/js/lib/datamap/topojson.js"></script>
+<script src="/assets/js/lib/datamap/datamaps.world.min.js"></script>
+<script src="/assets/js/lib/datamap/datamap-init.js"></script>
+<script src="/assets/lib/lobipanel/js/lobipanel.js"></script>
 <!-- // Datamap -->
-<script src="../../static/assets/js/scripts.js"></script>
+<script src="/assets/js/scripts.js"></script>
 <!-- scripit init-->
-<script>
-    $(document).ready(function() {
-        $('#lobipanel-custom-control').lobiPanel({
-            reload: false,
-            close: false,
-            editTitle: false
-        });
-    });
-</script>
+			<script>
+				$(document).ready(function() {
+					$('#lobipanel-custom-control').lobiPanel({
+						reload : false,
+						close : false,
+						editTitle : false
+					});
+				});
+				
+		        $.get(
+		        		"getUserinfo",
+		        		function(data){
+		        			$("#userName").html(data.data.userName);
+		        			$("#userType").html(data.data.userIdentity);
+		        		}
+		        		);
+		        
+		        var url="getAuditLogs";
+		        $.get(
+		        		url,
+		        		function(data){
+		        			var str='';
+		        			var count = 0;
+		        			for(i in data.data.evaluations){
+		        				var item = data.data.evaluations[i];
+		        				count++;
+		        				str+='<tr><th scope="row">'+count+'</th><td>'+item.evaluation+'</td><td><span class="badge badge-success">'
+		                                            +item.evaName+'</span></td><td>'+item.teacherName+'</td><td>'
+		                                            +item.stuName+'</td> <td>'+data.data.organization+'</td><td><a href="assetapplytestname.html?evaId='+item.evaId+'"><button type="button" class="btn btn-info m-b-10 m-l-5" id="toastr-info-top-right" >异议申请</button></a></td></tr>';
+		        			}
+		        			$('#list').html(str);
+		        			
+		        		});
+			</script>
 </body>
 
 </html>

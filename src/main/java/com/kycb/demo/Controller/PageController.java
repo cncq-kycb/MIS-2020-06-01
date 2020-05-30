@@ -46,7 +46,16 @@ public class PageController {
 	public String UserAssetcheckPage() {
 		return "/user/assetcheck";
 	}
-
+	
+	@RequestMapping("/user/assetchecktestname.html")
+	public String UserAssetcheckcPage() {
+		return "/user/assetchecktestname";
+	}
+	
+	@RequestMapping("/user/assetapplytestname.html")
+	public String UserAssetApplyPage() {
+		return "/user/assetapplytestname";
+	}
 
 	// 管理员首页
 	@RequestMapping("/admin/index.html")
@@ -55,5 +64,15 @@ public class PageController {
 		Userinfo userinfo = userService.getUser(userDetails.getUsername());
 		session.setAttribute("userinfo", userinfo);
 		return "/admin/index";
+	}	
+	
+	@RequestMapping("/admin/assetaudittestnamelist.html")
+	public String assetaudittestnamelist() {
+		return "/admin/assetaudittestnamelist";
+	}
+	
+	@RequestMapping("/admin/announcementafter.html")
+	public String announcementafter() {
+		return "/admin/announcementafter";
 	}
 }

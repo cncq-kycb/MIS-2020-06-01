@@ -35,7 +35,7 @@ public class UserController {
 	}
 
 	// 获取用户信息
-	@GetMapping(value = "/getUserinfo")
+	@GetMapping(value = "/user/getUserinfo")
 	@ResponseBody
 	public MyJson getUserinfo(HttpSession session) {
 		Userinfo userinfo = (Userinfo) session.getAttribute("userinfo");
@@ -48,12 +48,13 @@ public class UserController {
 	@ResponseBody
 	public MyJson search(String input, HttpSession session) {
 		Userinfo userinfo = (Userinfo) session.getAttribute("userinfo");
+		System.out.println(input);
 		return userService.search(input, userinfo.getUserId(), userinfo.getUserIdentity());
 	}
 
 	// 异议申请
 	@PreAuthorize("hasAuthority('ROLE_USER')")
-	@PostMapping("/audit")
+	@PostMapping("/user/audit")
 	@ResponseBody
 	public MyJson audit(Auditlog auditlog, HttpSession session) {
 		Userinfo userinfo = (Userinfo) session.getAttribute("userinfo");

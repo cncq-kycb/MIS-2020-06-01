@@ -69,6 +69,9 @@ function register(){
         data:Userinfo,
         success:function(data) {
 			alert(data.message);
+			if(data.code=='100'){
+				window.location.href='/login.html';
+			}
         },
         error:function(){alert("err back！！！")}
     });

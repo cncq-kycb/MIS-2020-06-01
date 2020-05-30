@@ -112,6 +112,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public MyJson register(Userinfo userinfo) {
+		UserinfoExample userinfoExample = new UserinfoExample();
+		userinfoExample.or().andUserNameEqualTo(userinfo.getUserName());
+		try {
+			List<Userinfo> userinfos = userInfoMapper.selectByExample(userinfoExample);
+			if (userinfos.size() != 0) {
+				return new MyJson(200, "用户名已注册");
+			}
+		} catch (Exception e) {
+			System.err.println(e);
+			return new MyJson(500, "数据库出错");
+		}
 		// 生成uuid
 		String uuid = userInfoMapper.getUUID();
 		userinfo.setUserId(uuid);

@@ -35,6 +35,7 @@ public class UserController {
 	}
 
 	// 获取用户信息
+	@PreAuthorize("hasAuthority('ROLE_USER')")
 	@GetMapping(value = "/user/getUserinfo")
 	@ResponseBody
 	public MyJson getUserinfo(HttpSession session) {
@@ -48,7 +49,6 @@ public class UserController {
 	@ResponseBody
 	public MyJson search(String input, HttpSession session) {
 		Userinfo userinfo = (Userinfo) session.getAttribute("userinfo");
-		System.out.println(input);
 		return userService.search(input, userinfo.getUserId(), userinfo.getUserIdentity());
 	}
 

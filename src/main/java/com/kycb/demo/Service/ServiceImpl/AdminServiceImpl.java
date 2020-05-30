@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.stereotype.Component;
 
+import com.kycb.demo.Dao.AuditLogViewMapper;
 import com.kycb.demo.Dao.AuditlogMapper;
+import com.kycb.demo.Pojo.AuditLogViewExample;
 import com.kycb.demo.Pojo.Auditlog;
 import com.kycb.demo.Pojo.AuditlogExample;
 import com.kycb.demo.Pojo.MyJson;
@@ -18,13 +20,15 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private AuditlogMapper auditlogMapper;
+	@Autowired
+	private AuditLogViewMapper auditLogViewMapper;
 
 	@Override
 	public MyJson getAuditLogs() {
-		AuditlogExample auditlogExample = new AuditlogExample();
-		auditlogExample.or().andAuditTypeEqualTo(0);
+		AuditLogViewExample auditLogViewExample = new AuditLogViewExample();
+		auditLogViewExample.or().andAuditResultEqualTo(0);
 		try {
-			return new MyJson(auditlogMapper.selectByExample(auditlogExample), "");
+			return new MyJson(auditLogViewMapper.selectByExampleWithBLOBs(auditLogViewExample), "");
 		} catch (Exception e) {
 			System.out.println(e);
 			throw new DataAccessResourceFailureException("Data base err");
@@ -55,10 +59,10 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public MyJson getAllAuditLogs() {
-		AuditlogExample auditlogExample = new AuditlogExample();
-		auditlogExample.or();
+		AuditLogViewExample auditLogViewExample = new AuditLogViewExample();
+		auditLogViewExample.or().andAuditResultNotEqualTo(0);
 		try {
-			return new MyJson(auditlogMapper.selectByExample(auditlogExample), "");
+			return new MyJson(auditLogViewMapper.selectByExampleWithBLOBs(auditLogViewExample), "");
 		} catch (Exception e) {
 			System.out.println(e);
 			throw new DataAccessResourceFailureException("Data base err");

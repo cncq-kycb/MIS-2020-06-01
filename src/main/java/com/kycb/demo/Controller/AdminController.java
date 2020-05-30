@@ -45,6 +45,7 @@ public class AdminController {
 	}
 	
 	// 获取用户信息
+	@PreAuthorize("hasAuthority('ROLE_ADMIN')")
 	@GetMapping(value = "/admin/getUserinfo")
 	@ResponseBody
 	public MyJson getUserinfo(HttpSession session) {

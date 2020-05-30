@@ -10,7 +10,6 @@ import com.kycb.demo.Dao.AuditLogViewMapper;
 import com.kycb.demo.Dao.AuditlogMapper;
 import com.kycb.demo.Pojo.AuditLogViewExample;
 import com.kycb.demo.Pojo.Auditlog;
-import com.kycb.demo.Pojo.AuditlogExample;
 import com.kycb.demo.Pojo.MyJson;
 import com.kycb.demo.Pojo.Userinfo;
 import com.kycb.demo.Service.AdminService;

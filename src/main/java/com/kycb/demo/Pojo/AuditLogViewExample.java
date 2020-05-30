@@ -385,6 +385,76 @@ public class AuditLogViewExample {
             return (Criteria) this;
         }
 
+        public Criteria andApplyReasonIsNull() {
+            addCriterion("apply_reason is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonIsNotNull() {
+            addCriterion("apply_reason is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonEqualTo(String value) {
+            addCriterion("apply_reason =", value, "applyReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonNotEqualTo(String value) {
+            addCriterion("apply_reason <>", value, "applyReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonGreaterThan(String value) {
+            addCriterion("apply_reason >", value, "applyReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonGreaterThanOrEqualTo(String value) {
+            addCriterion("apply_reason >=", value, "applyReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonLessThan(String value) {
+            addCriterion("apply_reason <", value, "applyReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonLessThanOrEqualTo(String value) {
+            addCriterion("apply_reason <=", value, "applyReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonLike(String value) {
+            addCriterion("apply_reason like", value, "applyReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonNotLike(String value) {
+            addCriterion("apply_reason not like", value, "applyReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonIn(List<String> values) {
+            addCriterion("apply_reason in", values, "applyReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonNotIn(List<String> values) {
+            addCriterion("apply_reason not in", values, "applyReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonBetween(String value1, String value2) {
+            addCriterion("apply_reason between", value1, value2, "applyReason");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyReasonNotBetween(String value1, String value2) {
+            addCriterion("apply_reason not between", value1, value2, "applyReason");
+            return (Criteria) this;
+        }
+
         public Criteria andTeacherIdIsNull() {
             addCriterion("teacher_id is null");
             return (Criteria) this;

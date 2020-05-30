@@ -11,6 +11,8 @@ public class AuditLogView {
 
     private String auditReason;
 
+    private String applyReason;
+
     private String teacherId;
 
     private String teacherName;
@@ -57,6 +59,14 @@ public class AuditLogView {
 
     public void setAuditReason(String auditReason) {
         this.auditReason = auditReason == null ? null : auditReason.trim();
+    }
+
+    public String getApplyReason() {
+        return applyReason;
+    }
+
+    public void setApplyReason(String applyReason) {
+        this.applyReason = applyReason == null ? null : applyReason.trim();
     }
 
     public String getTeacherId() {

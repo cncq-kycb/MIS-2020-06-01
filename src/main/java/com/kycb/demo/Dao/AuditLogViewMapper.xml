@@ -6,6 +6,7 @@
     <result column="eva_id" jdbcType="VARCHAR" property="evaId" />
     <result column="eva_name" jdbcType="CHAR" property="evaName" />
     <result column="audit_reason" jdbcType="VARCHAR" property="auditReason" />
+    <result column="apply_reason" jdbcType="VARCHAR" property="applyReason" />
     <result column="teacher_id" jdbcType="VARCHAR" property="teacherId" />
     <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
     <result column="stu_id" jdbcType="VARCHAR" property="stuId" />
@@ -76,8 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    audit_id, eva_id, eva_name, audit_reason, teacher_id, teacher_name, stu_id, stu_name, 
-    organization, apply_date, audit_result
+    audit_id, eva_id, eva_name, audit_reason, apply_reason, teacher_id, teacher_name, 
+    stu_id, stu_name, organization, apply_date, audit_result
   </sql>
   <sql id="Blob_Column_List">
     evaluation
@@ -120,15 +121,15 @@
   </delete>
   <insert id="insert" parameterType="com.kycb.demo.Pojo.AuditLogView">
     insert into audit_log_view (audit_id, eva_id, eva_name, 
-      audit_reason, teacher_id, teacher_name, 
-      stu_id, stu_name, organization, 
-      apply_date, audit_result, evaluation
-      )
+      audit_reason, apply_reason, teacher_id, 
+      teacher_name, stu_id, stu_name, 
+      organization, apply_date, audit_result, 
+      evaluation)
     values (#{auditId,jdbcType=VARCHAR}, #{evaId,jdbcType=VARCHAR}, #{evaName,jdbcType=CHAR}, 
-      #{auditReason,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR}, 
-      #{stuId,jdbcType=VARCHAR}, #{stuName,jdbcType=VARCHAR}, #{organization,jdbcType=CHAR}, 
-      #{applyDate,jdbcType=TIMESTAMP}, #{auditResult,jdbcType=INTEGER}, #{evaluation,jdbcType=LONGVARCHAR}
-      )
+      #{auditReason,jdbcType=VARCHAR}, #{applyReason,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, 
+      #{teacherName,jdbcType=VARCHAR}, #{stuId,jdbcType=VARCHAR}, #{stuName,jdbcType=VARCHAR}, 
+      #{organization,jdbcType=CHAR}, #{applyDate,jdbcType=TIMESTAMP}, #{auditResult,jdbcType=INTEGER}, 
+      #{evaluation,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.kycb.demo.Pojo.AuditLogView">
     insert into audit_log_view
@@ -144,6 +145,9 @@
       </if>
       <if test="auditReason != null">
         audit_reason,
+      </if>
+      <if test="applyReason != null">
+        apply_reason,
       </if>
       <if test="teacherId != null">
         teacher_id,
@@ -182,6 +186,9 @@
       </if>
       <if test="auditReason != null">
         #{auditReason,jdbcType=VARCHAR},
+      </if>
+      <if test="applyReason != null">
+        #{applyReason,jdbcType=VARCHAR},
       </if>
       <if test="teacherId != null">
         #{teacherId,jdbcType=VARCHAR},
@@ -230,6 +237,9 @@
       <if test="record.auditReason != null">
         audit_reason = #{record.auditReason,jdbcType=VARCHAR},
       </if>
+      <if test="record.applyReason != null">
+        apply_reason = #{record.applyReason,jdbcType=VARCHAR},
+      </if>
       <if test="record.teacherId != null">
         teacher_id = #{record.teacherId,jdbcType=VARCHAR},
       </if>
@@ -265,6 +275,7 @@
       eva_id = #{record.evaId,jdbcType=VARCHAR},
       eva_name = #{record.evaName,jdbcType=CHAR},
       audit_reason = #{record.auditReason,jdbcType=VARCHAR},
+      apply_reason = #{record.applyReason,jdbcType=VARCHAR},
       teacher_id = #{record.teacherId,jdbcType=VARCHAR},
       teacher_name = #{record.teacherName,jdbcType=VARCHAR},
       stu_id = #{record.stuId,jdbcType=VARCHAR},
@@ -283,6 +294,7 @@
       eva_id = #{record.evaId,jdbcType=VARCHAR},
       eva_name = #{record.evaName,jdbcType=CHAR},
       audit_reason = #{record.auditReason,jdbcType=VARCHAR},
+      apply_reason = #{record.applyReason,jdbcType=VARCHAR},
       teacher_id = #{record.teacherId,jdbcType=VARCHAR},
       teacher_name = #{record.teacherName,jdbcType=VARCHAR},
       stu_id = #{record.stuId,jdbcType=VARCHAR},

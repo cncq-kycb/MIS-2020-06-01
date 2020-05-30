@@ -177,13 +177,18 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public MyJson audit(Auditlog auditlog, String userId) {
-		// auditlogMapper
 		try {
+			Evaluation evaluation = evaluationMapper.selectByPrimaryKey(auditlog.getAuditItemid());
 			Userinfo userinfo = userInfoMapper.selectByPrimaryKey(userId);
+			String uuid = userInfoMapper.getUUID();
+			auditlog.setAuditId(uuid);
 			auditlog.setAuditUserid(userinfo.getUserId());
 			auditlog.setAuditUser(userinfo.getUserName());
 			auditlog.setAuditResult(0);
 			auditlog.setAuditType(2);
+			auditlog.setAuditTeacherid(evaluation.getTeacherId());
+			auditlog.setAuditTeacher(evaluation.getTeacherName());
+			auditlog.setAuditName(evaluation.getEvaName());
 			auditlog.setApplyDate(new Date());
 			auditlogMapper.insertSelective(auditlog);
 			return new MyJson(100, "申请成功");

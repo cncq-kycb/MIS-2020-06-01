@@ -48,7 +48,7 @@
                     <a class="sidebar-sub-toggle"><i class="ti-files"></i> 审核管理 <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
                         <li><a href="useraudit.html">用户审核管理</a></li>
-                        <li><a href="assetaudit.html">异议申请审核管理</a></li>
+                        <li><a href="../admin/assetaudittestnamelist.html">异议申请审核管理</a></li>
 
                     </ul>
                 </li>
@@ -249,28 +249,17 @@
                             <table class="table table-responsive">
                                 <thead>
                                 <tr>
-                                    <th><></th>
+                                    <th>< ></th>
                                     <th>评价</th>
                                     <th>评价名</th>
                                     <th>申请原因</th>
                                     <th>评价人</th>
                                     <th>学生名</th>
                                     <th>学校</th>
-                                    <th>学生名</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row"></th>
-                                    <td>testcontent</td>
-                                    <td><span class="badge badge-success">testname</span></td>
-                                    <td>testapplyreason</td>
-                                    <td>teacher</td>
-                                    <td>student</td>
-                                    <td>实验中学</td>
-                                    <td>student</td>
+                                <tbody id="detailInfo">
 
-                                </tr>
 
                                 </tbody>
                             </table>
@@ -282,7 +271,7 @@
                                 <tbody>
                                 <tr>
 
-                                    <textarea class="form-control" rows="3" placeholder=""></textarea>
+                                    <textarea class="form-control" rows="3" placeholder="" id="inputText"></textarea>
 
 
                                 </tr>
@@ -313,16 +302,7 @@
     </div>
     <!-- /# main -->
 </div>
-<script>
-    function auditAsset(){    /* 绑定事件 */
-        var r = confirm("审核完成")
-        if (r == true) {
-            window.location.href = '/admin/index.html'
-        } else {
 
-        }
-    }
-</script>
 
 <!-- /# content wrap -->
 <script src="/assets/js/lib/jquery.min.js"></script>
@@ -349,6 +329,34 @@
 <script src="/assets/js/scripts.js"></script>
 <!-- scripit init-->
 <script>
+var url="getAuditLogs";
+$.get(
+		url,
+		function(data){
+		    var query = window.location.search.substring(1);
+		    var id = '';
+		    var vars = query.split("&");
+		    for (var i=0;i<vars.length;i++) {
+		            var pair = vars[i].split("=");
+		            if(pair[0] == "id"){
+		            	id = pair[1];
+		         	   }
+		    }
+		    
+			var str='';
+			
+			for(i in data.data){
+				var item = data.data[i];
+				if(item.auditId==id){
+				var str='<tr><th scope="row"></th><td>'
+				+item.evaluation+'</td><td><span class="badge badge-success">'+item.evaName	+'</span></td><td>'+item.applyReason
+				+'</td><td>'+item.teacherName+'</td><td>'+item.stuName+'</td><td>'+item.organization+'</td></tr>'
+				}
+			}
+			$("#detailInfo").html(str);
+		});
+</script>
+<script>
     $(document).ready(function() {
         $('#lobipanel-custom-control').lobiPanel({
             reload: false,
@@ -356,6 +364,42 @@
             editTitle: false
         });
     });
+    
+</script>
+<script>
+    function auditAsset(){    /* 绑定事件 */
+    	
+		    var query = window.location.search.substring(1);
+		    var id = '';
+		    var vars = query.split("&");
+		    for (var i=0;i<vars.length;i++) {
+		            var pair = vars[i].split("=");
+		            if(pair[0] == "id"){
+		            	id = pair[1];
+		         	   }
+		    }
+     	        var Auditlog ={};
+     	        Auditlog.input=$('#inputText').val();
+     	        Auditlog.auditId=id;
+     	    	
+     	        $.ajax({
+     	            type: "post",
+     	            url:"verify" ,
+     	            async:false,
+     	            dataType: "json",
+     	            data:Auditlog,
+     	            success:function(data) {
+     	               var r = confirm("审核完成")
+     	              if (r == true) {
+     	                  window.location.href = '/admin/index.html'
+     	              } else {
+
+     	              }
+     	            },
+     	            error:function(){alert("err back！！！")}
+     	        });
+
+    }
 </script>
 </body>
 

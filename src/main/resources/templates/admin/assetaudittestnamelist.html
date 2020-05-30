@@ -258,16 +258,6 @@
                                 </tr>
                                 </thead>
                                 <tbody id="list">
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>testcontent</td>
-                                    <td><span class="badge badge-success">testname</span></td>
-                                    <td>teacher</td>
-                                    <td>student</td>
-                                    <td>实验中学</td>
-                                    <td>testapplyreason</td>
-                                    <td><button type="button" class="btn btn-info m-b-10 m-l-5" id="toastr-info-top-right" onclick="window.location.href = 'templates/admin/assetaudittestname.html'">审核</button></td>
-                                </tr>
 
 
                                 </tbody>
@@ -330,12 +320,12 @@
 		        		function(data){
 		        			var str='';
 		        			var count = 0;
-		        			for(i in data.data.evaluations){
-		        				var item = data.data.evaluations[i];
+		        			for(i in data.data){
+		        				var item = data.data[i];
 		        				count++;
 		        				str+='<tr><th scope="row">'+count+'</th><td>'+item.evaluation+'</td><td><span class="badge badge-success">'
 		                                            +item.evaName+'</span></td><td>'+item.teacherName+'</td><td>'
-		                                            +item.stuName+'</td> <td>'+data.data.organization+'</td><td><a href="assetapplytestname.html?evaId='+item.evaId+'"><button type="button" class="btn btn-info m-b-10 m-l-5" id="toastr-info-top-right" >异议申请</button></a></td></tr>';
+		                                            +item.stuName+'</td> <td>'+item.organization+'</td><td>'+item.applyReason+'</td><td><button type="button" class="btn btn-info m-b-10 m-l-5" id="toastr-info-top-right" onclick="window.location.href = \'/admin/assetaudittestname.html?id='+item.auditId+'\'">审核</button></td></tr>';
 		        			}
 		        			$('#list').html(str);
 		        			

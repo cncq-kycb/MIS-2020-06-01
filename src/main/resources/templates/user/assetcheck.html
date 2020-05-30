@@ -295,6 +295,7 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div id="listResult"></div>
                         </div>
                     </div><!-- /# column -->
 
@@ -368,8 +369,13 @@
         $.get(
         		url,
         		function(data){
+        			$('#listResult').html('');
         			var str2='';
         			var count = 0;
+        			if(data.data.evaluations==null||data.data.evaluations==''){
+        				
+        				$('#listResult').html('<center>查询结果为空</center>');
+        			}
         			for(i in data.data.evaluations){
         				var item = data.data.evaluations[i];
         				count++;
